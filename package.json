@@ -3,11 +3,8 @@
   "version": "0.0.1",
   "engines": {
     "node": "5.6.0"
-<<<<<<< 17281963a99bdb30f0fba547465e045ff8310d24
-  },
-=======
   }
->>>>>>> Add engine to package json and npm start to Procfile
+  },
   "description": "An app to help you and your friends choose a movie to watch",
   "main": "./server/server.js",
   "scripts": {
