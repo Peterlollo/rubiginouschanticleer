@@ -9,3 +9,6 @@ To run tests
 - install dependencies: `npm install`
 - Server side: `grunt mocha`
 - Client side: `grunt karma`
+
+
+test change for deployment purposes
