@@ -6,8 +6,7 @@ var db = new Sequelize( 'moviematch', null, null, {
     underscored: true
   },
 
-  // storage: './server/config/moviematch.sqlite'
-  storage: 'mysql://b913c42b4a5a8a:afcebcf3@us-cdbr-iron-east-03.cleardb.net/heroku_646b04b1daeb208?reconnect=true'
+  storage: './server/config/moviematch.sqlite'
 });
 
 module.exports = db;

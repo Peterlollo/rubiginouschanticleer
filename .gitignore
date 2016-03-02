@@ -39,5 +39,3 @@ node_modules
 
 # Bower library
 client/lib
-
-server/config/moviematch.sqlite
