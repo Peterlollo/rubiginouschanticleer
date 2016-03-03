@@ -1,0 +1,125 @@
+button:disabled {
+  color: lightgrey;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.bigview {
+  max-width: 30%;
+  float: left;
+}
+
+.large {
+  font-size: 2em;
+}
+
+.center {
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+}
+
+
+.laptop-buttons {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  margin: 5px;
+}
+
+.mobile-buttons {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  margin: 5px;
+}
+
+.btn-laptop {
+  font-size: 2em;
+  border-radius: 5px;
+}
+
+.btn-mobile {
+  height: 80px;
+  width: 80px;
+  font-size: 1em;
+  border-radius: 50%;
+}
+
+.right-mobile {
+  margin-right: 40px;
+}
+
+.right-laptop {
+  margin-right: 80px;
+}
+.error {
+  border: 1px solid red;
+  border-radius: 5%;
+}
+
+.error-msg {
+  color: red;
+}
+
+#match {
+  margin-bottom: 100px;
+}
+
+hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 100px 0 50px 0;
+}
+
+.main-nav {
+  height: 35px;
+  background:rgba(0,94,255,0.2);
+}
+
+.app-logo {
+  width: 100px;
+}
+
+.session-name {
+  position: relative;
+  left: 35%;
+  font-family: 'Franklin Gothic Medium', 'Franklin Gothic', 'ITC Franklin Gothic', Arial, sans-serif;
+  font-size: 20px;
+}
+
+.main-nav-menu {
+  float: right;
+  position:relative;
+  margin-top: 4px;
+}
+
+.main-nav-menu-icon {
+  width: 25px;
+}
+
+.nav-list {
+  padding-right: 13px;
+  z-index: 100;
+  cursor: pointer;
+  position: absolute;
+  left: -80px;
+  top: 35px;
+  background:rgba(0,94,225,0.3);
+}
+
+.foto {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+}
