@@ -106,6 +106,7 @@ var checkMatch = function( req, res, next ) {
         // if so, compare # of users to array.length. If they are the same,
         if( voteData.length === userCount ) {
           // reduce votedata array to see if all are true
+          console.log('voteDATA.length==============>>>>>>>>>', voteData.length);
           var matched = voteData.reduce( function( memo, curr ) {
             if( curr.vote === false ) {
               memo = false;
@@ -114,6 +115,7 @@ var checkMatch = function( req, res, next ) {
           }, true);
           // if they are all true
           if( matched ) {
+            console.log('GOT A MATCH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
             // get movie object for the movie id
             // return movie object
             mController.getMovie( req, res ); // pass response object to mController so it can res.send movie data
@@ -128,7 +130,7 @@ var checkMatch = function( req, res, next ) {
       } // end if ( isArray )
     } );
   } );
-}
+};
 
 
 

@@ -16,10 +16,17 @@ module.exports = {
     res.send( Movies.getMoviePackage( req.params.number ));
   },
 
-  getMovie: function( req, res, next ) {
-    var movieID = parseInt( req.params.movie_id );
-    var movie = Movies.getMovie( movieID );
-    res.json( movie );
+  getMovie: function( req, res ) {
+    var movieId = parseInt( req.params.movie_id );
+    Movies.findOne({where: {id: movieId}})
+      .then( function ( movie ) {
+        if(!movie) {
+          res.send(404, 'did not find movie');
+        } else {
+          console.log('and we are returning this fat movie', movie.dataValues);
+          res.json(movie.dataValues);
+        }
+      });
   },
 
   getSearchResults: function (req, res, next) {

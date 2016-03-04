@@ -31,6 +31,7 @@ angular.module( 'moviematch.matchServices', [] )
         '/api/sessions/' + session.id + '/match/' + movie.id
       )
       .then( function( response ) {
+        console.log('check match, found match with this response', response);
         return response.data;
       }, function( err ) {
         console.error( err );

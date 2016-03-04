@@ -25,7 +25,7 @@ angular.module( 'moviematch.match', [
       .then( function( data ) {
         $scope.moviePackage = data;
         callback();
-      })
+      });
   };
 
   var loadNextMovie = function(){
@@ -65,15 +65,94 @@ angular.module( 'moviematch.match', [
       Match.checkMatch( $scope.session, $scope.currMovie )
       .then( function( result ) {
         if( result ) {
+          console.log('yo we got a major match!', result);
           Socket.emit( 'foundMatch', { sessionId: $scope.session.id, movie: $scope.currMovie } );
         } else {
           loadNextMovie();
         }
       });
     });
-  }
+  };
+
   $scope.no = function() {
     Match.sendVote( $scope.session.id, $scope.user.name, $scope.currMovie.id, false );
     loadNextMovie();
-  }
+  };
+
+  // // Listen for the signal to redirect to a 'match found' page.
+  Socket.on( 'matchRedirect', function( id ) {
+    // id refers to the id of the movie that the group matched on
+    Match.matchRedirect( id );
+  });
+
+
+
+
+
+
+
+
+
+
+
+  //end Peter's added functions
+  // var currMovieIndex = 0;
+  // var currMoviePackage = 0;
+
+  // var fetchNextMovies = function( packageNumber, callback ){
+  //   FetchMovies.getNext10Movies( packageNumber )
+  //     .then( function( data ) {
+  //       $scope.moviePackage = data;
+  //       callback();
+  //     });
+  // };
+
+  // var loadNextMovie = function(){
+  //   if( currMovieIndex === 9 ) {
+  //     currMoviePackage++;
+  //     fetchNextMovies( currMoviePackage, function() {
+  //       $scope.currMovie = $scope.moviePackage[0];
+  //       });
+  //     currMovieIndex = 0;
+  //   }
+  //   else {
+  //     currMovieIndex++;
+  //     $scope.currMovie = $scope.moviePackage[currMovieIndex];
+  //   }
+
+  // };
+
+  // $scope.init = function() {        //as soon as the view is loaded request the first movie-package here
+  //   fetchNextMovies( 0, function() {
+  //     $scope.currMovie = $scope.moviePackage[0];
+  //   });
+  // };
+
+  // $scope.init();
+
+  // // Listen for the signal to redirect to a 'match found' page.
+  // Socket.on( 'matchRedirect', function( id ) {
+  //   // id refers to the id of the movie that the group matched on
+  //   Match.matchRedirect( id );
+  // });
+
+  // $scope.yes = function() {
+  //   Match.sendVote( $scope.session.id, $scope.user.name, $scope.currMovie.id, true )
+  //   // For every 'yes' we want to double check to see if we have a match. If we do,
+  //   // we want to send a socket event out to inform the server.
+  //   .then( function() {
+  //     Match.checkMatch( $scope.session, $scope.currMovie )
+  //     .then( function( result ) {
+  //       if( result ) {
+  //         Socket.emit( 'foundMatch', { sessionId: $scope.session.id, movie: $scope.currMovie } );
+  //       } else {
+  //         loadNextMovie();
+  //       }
+  //     });
+  //   });
+  // }
+  // $scope.no = function() {
+  //   Match.sendVote( $scope.session.id, $scope.user.name, $scope.currMovie.id, false );
+  //   loadNextMovie();
+  // }
 } );
