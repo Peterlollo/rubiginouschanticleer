@@ -52,9 +52,13 @@ io.on( 'connect' , function( socket ){
   });
 
   socket.on( 'doneUser', function (data) {
-    console.log('SOCKET2 =================>>>>>>>>>>>>>>>>>>>>>>>>>>>', data);
     socket.join( data.sessionId );
     io.to( data.sessionId ).emit( 'newUser');
+  });
+
+  socket.on( 'compromise', function (data) {
+    socket.join( data.sessionId );
+    io.to( data.sessionId ).emit( 'compromiseNow');
   });
 
 });

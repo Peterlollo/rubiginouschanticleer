@@ -89,12 +89,23 @@ angular.module( 'moviematch.match', [
     console.log('GOT NEW USER IN SOCKET: done users = ', $scope.doneUsers);
     if($scope.doneUsers === $scope.users.length){
       $scope.loading = false;
-      Socket.emit( 'doneUser', {sessionId: $scope.session.id} );
-      Match.getCompromise($scope.session.id)
-      .then(function(movie) {
-        $scope.compromiseFound = true;
-        $scope.currMovie = movie || $scope.currMovie;
-      });
+      Socket.emit( 'compromise', {sessionId: $scope.session.id});
+      // Socket.emit( 'doneUser', {sessionId: $scope.session.id} );
+      // Match.getCompromise($scope.session.id)
+      // .then(function(movie) {
+      //   $scope.compromiseFound = true;
+      //   $scope.currMovie = movie || $scope.currMovie;
+      // });
     }
+  });
+
+  Socket.on( 'compromiseNow', function ( data ) {
+    console.log('compro now socket fired');
+    Match.getCompromise($scope.session.id)
+        .then(function(movie) {
+          $scope.compromiseFound = true;
+          $scope.loading = false;
+          $scope.currMovie = movie || $scope.currMovie;
+        });
   });
 });
