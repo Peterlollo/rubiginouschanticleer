@@ -35,6 +35,18 @@ angular.module( 'moviematch.miscServices', [] )
         console.error( err );
       });
     },
+
+    getTheaterMovies: function () {
+      console.log('getting theater movies');
+      return $http.post('/api/movies/theaters/')
+      .then( function(res) {
+        console.log('got theater movies');
+        return res.data;
+      }, function(err) {
+        console.error(err);
+      });
+    }
+
   };
 })
 
@@ -72,5 +84,6 @@ angular.module( 'moviematch.miscServices', [] )
         console.log('Error saving movie', err);
       });
     }
+
   };
 });
