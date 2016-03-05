@@ -23,9 +23,11 @@
       </div>
     </div>
   </div>
-
-    <img class="load" id="mySpinner" src="../../assets/movieLoading.gif" ng-show="loading" />
-    <h4 ng-show="loading">Waiting for everyone to finish voting</h4>
+  <div class="row">
+    <img class="load col-xs-4 col-xs-offset-4" id="mySpinner" src="../../assets/movieLoading.gif" ng-show="loading" />
+  <div class="row">
+    <h4 class="lead load col-xs-4 col-xs-offset-4" ng-show="loading">Waiting for everyone to finish voting</h4>
+  </div>
 
     <!--Yes/No Buttons-->
     <div ng-hide="noMoreMovies" class="mobile-buttons">
