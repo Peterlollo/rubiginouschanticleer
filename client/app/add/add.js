@@ -6,6 +6,8 @@ angular.module( 'moviematch.add', [] )
   $scope.genreSearch = false;
   $scope.users = [];
   $scope.doneUsers = 0;
+  $scope.theaters = [];
+  $scope.nowShowing = false;
   $scope.loading = false;
   $scope.preLoading = true;
   var _ = window._;
@@ -32,6 +34,22 @@ angular.module( 'moviematch.add', [] )
       $scope.genreMovies = movies.results;
     }, function ( err ) {
       console.error( 'Error retrieving genre movies', err);
+    });
+  };
+
+  $scope.theaters = function() {
+    $scope.nowShowing = !$scope.nowShowing;
+    if ($scope.nowShowing){
+      $scope.getTheaterMovies();
+    }
+  };
+
+  $scope.getTheaterMovies = function() {
+    FetchMovies.getTheaterMovies()
+    .then( function (movies) {
+      $scope.theaters = movies.results;
+    }, function (err){
+      console.error( 'Error retrieving theater movies', err);
     });
   };
 

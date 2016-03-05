@@ -14,8 +14,53 @@
                     Browse Genres
                 </button>
             </div>
+            <div class="col-xs-2 col-xs-offset-2">
+                <button class="btn btn-success btn-lg" type="button" ng-click="theaters()">
+                    In Theaters
+                </button>
+            </div>
         </div>
     </div>
+
+
+    <!--In theaters Well-->
+    <div class="well" ng-show="nowShowing">
+        <div class="row">
+          <h4>Showing Now In Theaters</h4>
+        </div>
+
+        <!--Show Movies from in theaters call-->
+
+              <!-- START PANEL -->
+        <div class="cover-container">
+          <div ng-repeat="theater in theaters">
+            <img ng-repeat="theater in theaters" class="cover-item" ng-src="{{imgPath}}{{theater.poster_path}}" ng-click="addToQueue(theater)" data-target="#myModal">
+
+              <!-- Bootstrap Popover Modal -->
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title lead" id="myModalLabel">{{ popModal.title }}</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p class="modal-body">Average Rating: {{ popModal.rating }}</p>
+                      <img ng-src="{{imgPath}}{{popModal.poster_path}}">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button ng-click="addToQueue()" type="button" class="btn btn-primary" data-dismiss="modal">Add movie</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--End Bootstrap Popover Modal-->
+          </div>
+          <!--End Panel-->
+        </div>
+    </div>
+    <!--End Specific Movies Well-->
 
     <!--Search For Specific Movies Well-->
     <div class="well" ng-show="search">
