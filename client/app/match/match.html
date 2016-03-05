@@ -2,28 +2,40 @@
 <!-- We should be shown a movie, and then choose 'yes' or 'no' -->
 <div id="match" class="container">
   <p ng-hide="noMoreMovies" class="center"><span class="bold">{{ user.name }}</span>, would you like to see this movie with your friends today?</p>
-  <p ng-show="noMoreMovies" class="center">End of Queue! Time to Compromise</p>
-  <div class="movie">
-    <h2 class="center">{{ currMovie.title }} ({{ currMovie.release_date | date:"yyyy" }})</h2>
-    <h6 class="center">Avg Rating: {{ currMovie.vote_average }} | ({{ currMovie.original_language }})</h6>
-    <div class="row">
-      <!-- We want to size the poster appropriately so we can
-      see the buttons at the bottom -->
-      <div class="poster col-xs-12 center">
-        <img alt="{{ currMovie.title }} " src="{{imgPath}}{{ currMovie.image }}" class = "foto">
-      </div>
-      <div class="summary col-xs-12 center">
-        <h4>Movie Summary</h4>
-        <p>{{ currMovie.overview }}</p>
+  <div ng-show="noMoreMovies" class="center">
+    <h2>End of Queue!</h2>
+      <h4 ng-show="noMoreMovies && !loading">Suggested Compromise</h4>
+  </div>
+  <div ng-show="compromiseFound || !noMoreMovies">
+    <div class="movie">
+      <h2 class="center">{{ currMovie.title }} ({{ currMovie.release_date | date:"yyyy" }})</h2>
+      <h6 class="center">Avg Rating: {{ currMovie.vote_average }} | ({{ currMovie.original_language }})</h6>
+      <div class="row">
+          <!-- We want to size the poster appropriately so we can
+          see the buttons at the bottom -->
+        <div class="poster col-xs-12 center">
+            <img alt="{{ currMovie.title }} " src="{{imgPath}}{{ currMovie.image || currMovie.poster_path }}" class = "foto">
+        </div>
+        <div class="summary col-xs-12 center">
+          <h4>Movie Summary</h4>
+          <p>{{ currMovie.overview }}</p>
+        </div>
       </div>
     </div>
-    <div class="mobile-buttons">
+  </div>
+
+
+    <img class="load" id="mySpinner" src="../../assets/loading.gif" ng-show="loading" />
+    <h4 ng-show="loading">Waiting for everyone to finish adding to queue</h4>
+
+    <!--Yes/No Buttons-->
+    <div ng-hide="noMoreMovies" class="mobile-buttons">
       <button class="col-xs-5 pull-left btn-mobile visible-xs visible-sm btn-danger" ng-click="no()">NOPE</button>
       <button class="col-xs-5 pull-right btn-mobile right-mobile visible-xs visible-sm btn-success" ng-click="yes()">YEA!</button>
     </div>
 </div>
 </div>
-    <div class="laptop-buttons">
+    <div ng-hide="noMoreMovies" class="laptop-buttons">
       <button class="col-xs-5 btn-laptop hidden-xs hidden-sm btn-danger" ng-click="no()">NOPE</button>
       <button class="col-xs-5 pull-right btn-laptop right-laptop hidden-xs hidden-sm btn-success" ng-click="yes()">YEA!</button>
     </div>

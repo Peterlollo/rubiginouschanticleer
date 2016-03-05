@@ -14,7 +14,9 @@ var Vote = db.define( 'votes', {
     type: Sequelize.INTEGER,
     unique: 'su_movie_idx'
   },
-  vote: Sequelize.BOOLEAN
+  vote: Sequelize.BOOLEAN,
+  sessionId: Sequelize.INTEGER,
+  dbId: Sequelize.INTEGER
 } );
 
 Vote.sync().then( function() {
@@ -26,8 +28,8 @@ Vote.sync().then( function() {
 
 Vote.belongsTo( Session_User, {foreignKey: 'session_user_id'} );
 
-Vote.addVote = function( sessionUser, movie, vote ) {
-  return Vote.create( { session_user_id: sessionUser, movie_id: movie, vote: vote } )
+Vote.addVote = function( sessionUser, movie, vote, sessionId, dbId ) {
+  return Vote.create( { session_user_id: sessionUser, movie_id: movie, vote: vote, sessionId: sessionId, dbId: dbId } )
     .catch( function( err ) {
       console.error( err.stack );
     });
