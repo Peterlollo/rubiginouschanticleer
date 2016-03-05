@@ -50,8 +50,12 @@ button:disabled {
 .load {
   height: 25%;
   width: 25%;
-  position: absolute;
   z-index: 2;
+  text-align: center
+}
+
+img.load {
+  border-radius: 100%;
 }
 
 
