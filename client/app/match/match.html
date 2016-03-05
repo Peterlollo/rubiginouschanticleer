@@ -1,7 +1,8 @@
 <!-- This is the page that is shown when we are trying to match with the other people in our session -->
 <!-- We should be shown a movie, and then choose 'yes' or 'no' -->
 <div id="match" class="container">
-  <p class="center"><span class="bold">{{ user.name }}</span>, would you like to see this movie with your friends today?</p>
+  <p ng-hide="noMoreMovies" class="center"><span class="bold">{{ user.name }}</span>, would you like to see this movie with your friends today?</p>
+  <p ng-show="noMoreMovies" class="center">End of Queue! Time to Compromise</p>
   <div class="movie">
     <h2 class="center">{{ currMovie.title }} ({{ currMovie.release_date | date:"yyyy" }})</h2>
     <h6 class="center">Avg Rating: {{ currMovie.vote_average }} | ({{ currMovie.original_language }})</h6>

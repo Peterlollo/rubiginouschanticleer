@@ -11,6 +11,7 @@ angular.module( 'moviematch.match', [
   $scope.imgPath = 'http://image.tmdb.org/t/p/w500';
   var currMovieIndex = 0;
   $scope.user.name = Auth.getUserName();
+  $scope.noMoreMovies = false;
 
   Session.getSession()
   .then( function( session ) {
@@ -30,7 +31,15 @@ angular.module( 'moviematch.match', [
 
   var loadNextMovie = function(){
     currMovieIndex++;
-    $scope.currMovie = $scope.queue[currMovieIndex] || {title: 'No Movies Left In Your Queue. Here are movies with the most votes.'};
+    if(!$scope.queue[currMovieIndex]) {
+      $scope.noMoreMovies = true;
+      FetchMovies.getCompromise()
+      .then(function(movie) {
+        $scope.currMovie = movie;
+      });
+    } else {
+      $scope.currMovie = $scope.queue[currMovieIndex];
+    }
   };
 
     $scope.yes = function() {
