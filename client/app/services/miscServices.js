@@ -34,7 +34,7 @@ angular.module( 'moviematch.miscServices', [] )
       function( err ) {
         console.error( err );
       });
-    }
+    },
   };
 })
 

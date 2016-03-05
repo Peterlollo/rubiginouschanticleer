@@ -43,7 +43,11 @@ Vote.getSessMovieVotes = function( sessionId, movieId ) {
   .catch( function( err ) {
     console.error( err.stack );
   });
-}
+};
+
+Vote.getMostVotes = function (sessionId) {
+  return Vote.find( {where: {}})
+};
 
 
 module.exports = Vote;

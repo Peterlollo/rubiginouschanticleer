@@ -4,6 +4,7 @@ var Session_User = require( '../sessions_users/sessions_users' );
 var mController = require( '../movies/moviesController' );
 var Session = require( '../sessions/sessions' );
 var User = require( '../users/users' );
+var Session_Movie = require('../sessions_movies/sessions_movies');
 
 var getAllVotes = function() {};
 
@@ -83,7 +84,7 @@ var getSessMovieVotes = function( req, res, next ) {
     res.json( voteData );
   }, function( err ) {
     helpers.errorHandler( err );
-  })
+  });
 };
 
 var checkMatch = function( req, res, next ) {
@@ -128,7 +129,23 @@ var checkMatch = function( req, res, next ) {
       } // end if ( isArray )
     } );
   } );
-}
+};
+
+var getCompromise = function ( req, res, next ) {
+  var sessionId = req.body.sessionId;
+  Session_Movie.findAll({where: {session_id: sessionId}})
+  .then( function ( sessionMovieArray ){
+    console.log('sessionMovieArray in getCompromise VotesController=================>>>>>>>>>', sessionMovieArray);
+    for(var i = 0; i < sessionMovieArray.dataValues.length; i++) {
+      var movieId = sessionMovieArray.dataValues[i].movie_id;
+      //have: movieId, sessionId
+      //Get: session_user
+      //Find and tally individ movie votes from votes db with: session_user & movie_id
+      //any db's with votes/movie_id's listed together? I have session id as well
+      //need to find limit by session_users, so get that with session id?
+    }
+  });
+};
 
 
 
@@ -137,6 +154,7 @@ module.exports = {
   getAllVotes: getAllVotes,
   addVote: addVote,
   getSessMovieVotes: getSessMovieVotes,
-  checkMatch: checkMatch
+  checkMatch: checkMatch,
+  getCompromise: getCompromise
 
 };

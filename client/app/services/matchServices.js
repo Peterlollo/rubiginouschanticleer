@@ -35,7 +35,17 @@ angular.module( 'moviematch.matchServices', [] )
       }, function( err ) {
         console.error( err );
       });
-    }
+    },
 
+    getCompromise: function (sessionId) {
+      console.log('sessionId in getCompromise======>', sessionId);
+      return $http.post('/api/sessions/compromise/', {sessionId: sessionId})
+      .then( function( res ) {
+        return res.data;
+      },
+      function( err ) {
+        console.error( err );
+      });
+    }
   };
 });

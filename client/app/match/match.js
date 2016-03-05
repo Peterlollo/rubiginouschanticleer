@@ -33,7 +33,7 @@ angular.module( 'moviematch.match', [
     currMovieIndex++;
     if(!$scope.queue[currMovieIndex]) {
       $scope.noMoreMovies = true;
-      FetchMovies.getCompromise()
+      Match.getCompromise($scope.session.id)
       .then(function(movie) {
         $scope.currMovie = movie;
       });
