@@ -29,6 +29,7 @@ module.exports = function ( app, express ) {
   app.get('/api/movies/search/', moviesController.getSearchResults );
   app.post('/api/movies/search/', moviesController.getSearchResults );
   app.post('/api/movies/save/', moviesController.saveMovie );
+  app.post('/api/movies/theaters/', moviesController.getMoviesInTheaters);
 
   /* PREFS */
   app.get('/api/prefs', prefsController.getPrefs );
